@@ -1,0 +1,20 @@
+name: Deploy Udagram Website
+
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start Deployment
+        run: echo "[*] Starting deployment"
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Deploy to Github Pages
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: prod
+          FOLDER: .
